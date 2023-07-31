@@ -12,6 +12,5 @@ public class loginController extends HttpServlet{
 		String password = request.getParameter("pass");
 		System.out.println(email + "\n");
 		System.out.println(password + "\n");
-//email
 	}
 }
