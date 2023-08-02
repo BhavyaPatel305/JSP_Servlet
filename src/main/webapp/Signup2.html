@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup</title>
+</head>
+<body>
+    <div>
+        <form action="SignupController2">
+            Firstname: <input name="fname" type="text"/><br>
+            Lastname: <input name="lname" type="text"/><br>
+            Email: <input name="email" type="text"/><br>
+            Password: <input name="pass" type="text"/><br>
+            GENDER:
+            <input name="gender" type="radio" value="male"/>Male
+            <input name="gender" type="radio" value="female"/>Female<br>
+            Hobby: <input name="hobby" type="text"/><br>
+            <label for="city">Select a City:</label>
+            <select id="city" name="city">
+                <option value="newyork">New York</option>
+                <option value="losangeles">Los Angeles</option>
+                <option value="chicago">Chicago</option>
+                <option value="houston">Houston</option>
+            </select><br>
+            <label>
+                <input type="checkbox" name="terms" required>
+                I have read and understood the terms and conditions.
+            </label>
+            <br>
+            <input type="submit" value="Submit">
+            <br>
+
+        </form>
+    </div>
+</body>
+</html>
