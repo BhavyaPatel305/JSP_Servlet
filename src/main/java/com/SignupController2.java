@@ -22,14 +22,49 @@ public class SignupController2 extends HttpServlet{
         PrintWriter out = response.getWriter();
         response.setContentType("text/html");
 
-        out.print("<html><body>");
-        out.print("<br>FirstName: " + firstName);
-        out.print("<br>LastName: " + lastName);
-        out.print("<br>Email: " + email);
-        out.print("<br>Password: " + password);
-        out.print("<br>Gender: " + gender);
-        out.print("<br>hobby; " + hobby);
-        out.print("<br>city: " + city);
+        // Validation
+        String err_msg = "";
+        boolean flg = false;
+        if(firstName == null || firstName.trim().length() == 0){
+            err_msg += "First Name is required<br>";
+            flg = true;
+        }
+        if(lastName == null || lastName.trim().length() == 0){
+            err_msg += "Last Name is required<br>";
+            flg = true;
+        }
+        if(email == null || email.trim().length() == 0){
+            err_msg += "Email is required<br>";
+            flg = true;
+        }
+        if(password == null || password.trim().length() == 0){
+            err_msg += "Password is required<br>";
+            flg = true;
+        }
+        if(gender == null || gender.trim().length() == 0){
+            err_msg += "Gender is required<br>";
+            flg = true;
+        }
+        if(hobby == null || hobby.trim().length() == 0){
+            err_msg += "Hobby is required<br>";
+            flg = true;
+        }
+        if(city == null || city.trim().length() == 0){
+            err_msg += "City is required<br>";
+            flg = true;
+        }
+        if(flg == false){
+            out.print("<html><body>");
+            out.print("<br>FirstName: " + firstName);
+            out.print("<br>LastName: " + lastName);
+            out.print("<br>Email: " + email);
+            out.print("<br>Password: " + password);
+            out.print("<br>Gender: " + gender);
+            out.print("<br>hobby; " + hobby);
+            out.print("<br>city: " + city);
+        }else{
+            out.print(err_msg);
+        }
         out.print("</body></html>");
     }
     
