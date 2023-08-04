@@ -1,7 +1,6 @@
 package com;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -19,26 +18,37 @@ public class RegistrationController extends HttpServlet {
         String email = request.getParameter("email");
         String password = request.getParameter("pass");
 
-        int index = 0;
         boolean flg = false;
 
         // Write logic for validation
         if (firstName == null || firstName.trim().length() == 0) {
             flg = true;
-            // We send error message using setAttribute, where "firstNameError" is key and "PLease Enter First Name" is value
+            // We send error message using setAttribute, where "firstNameError" is key and
+            // "PLease Enter First Name" is value
             // We send multiple error messages using setAttribute
             request.setAttribute("firstNameError", "Please Enter FirstName");
+        } else {
+            // If firstname was given as input by the user than setAttribute its value
+            // Which we will access in Home.jsp file to print it on screen
+            request.setAttribute("firstNameValue", firstName);
         }
         if (email == null || email.trim().length() == 0) {
             flg = true;
             // We send multiple error messages using setAttribute
             request.setAttribute("emailError", "Please Enter Email");
-
+        }else {
+            // If email was given as input by the user than setAttribute its value
+            // Which we will access in Home.jsp file to print it on screen
+            request.setAttribute("emailValue", email);
         }
         if (password == null || password.trim().length() == 0) {
             flg = true;
             // We send multiple error messages using setAttribute
             request.setAttribute("passwordError", "Please Enter Password");
+        }else {
+            // If password was given as input by the user than setAttribute its value
+            // Which we will access in Home.jsp file to print it on screen
+            request.setAttribute("passwordValue", password);
         }
         // if flg == true, we go back to Registration.jsp to print error msg over there
         if (flg == true) {
