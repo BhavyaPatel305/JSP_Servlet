@@ -16,7 +16,7 @@ public class SignupController2 extends HttpServlet{
         String email = request.getParameter("email");
         String password = request.getParameter("pass");
         String gender = request.getParameter("gender");
-        String hobby = request.getParameter("hobby");
+        String[] hobby = request.getParameterValues("hobby");
         String city = request.getParameter("city");
 
         PrintWriter out = response.getWriter();
@@ -45,7 +45,7 @@ public class SignupController2 extends HttpServlet{
             err_msg += "Gender is required<br>";
             flg = true;
         }
-        if(hobby == null || hobby.trim().length() == 0){
+        if(hobby == null || hobby.length == 0){
             err_msg += "Hobby is required<br>";
             flg = true;
         }
@@ -60,7 +60,10 @@ public class SignupController2 extends HttpServlet{
             out.print("<br>Email: " + email);
             out.print("<br>Password: " + password);
             out.print("<br>Gender: " + gender);
-            out.print("<br>hobby; " + hobby);
+            out.print("<br>hobby:");
+            for(int i = 0; i<hobby.length;i++) {
+            	out.print("<br>" + hobby[i]);
+            }
             out.print("<br>city: " + city);
         }else{
             out.print(err_msg);
