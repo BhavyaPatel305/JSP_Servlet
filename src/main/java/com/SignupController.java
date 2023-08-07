@@ -2,10 +2,15 @@ package com;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.utility.DbConnection;
 
 @javax.servlet.annotation.WebServlet("/SignupController")
 public class SignupController extends HttpServlet{
@@ -32,24 +37,32 @@ public class SignupController extends HttpServlet{
 		}
 		
 		
-		// Give response to client
-		PrintWriter out = response.getWriter();
-		// give response in the form of html
-		response.setContentType("text/html");
-		// Start the html file, that we are returning
-		out.print("<html><body>");
-		
 		if (flg == true) {
-			// Add content to it
-			out.print(err_msg);
 		}
 		else{
 			// Add content to it
-			out.print("FirstName: " + firstName);
-			out.print("<br>Email: " + email);
-			out.print("<br>Password: " + password);
+			try{
+				// Get the connection object from DbConnection.java file
+				Connection connection = DbConnection.getConnection();
+
+				// Execute query in database
+				PreparedStatement pstmt = connection.prepareStatement("insert into users(firstname,email,password) values (?,?,?)");
+				pstmt.setString(1,firstName);
+				pstmt.setString(2,email);
+				pstmt.setString(3,password);
+
+				// Run the query
+				pstmt.executeUpdate();
+
+				// Then go to Login.jsp file
+				RequestDispatcher rd = request.getRequestDispatcher("Login.jsp");
+	  			rd.forward(request, response);
+
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+			
 		}
-		out.print("</body></html>");
 		
 	}
 }
