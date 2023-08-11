@@ -1,4 +1,4 @@
-package com;
+package com.Controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.Bean.UserBean;
+import com.dao.UserDao;
 import com.utility.DbConnection;
 
 @javax.servlet.annotation.WebServlet("/SignupController")
@@ -42,18 +44,13 @@ public class SignupController extends HttpServlet{
 		else{
 			// Add content to it
 			try{
-				// Get the connection object from DbConnection.java file
-				Connection connection = DbConnection.getConnection();
+				UserBean user = new UserBean();
+				user.setFirstName(firstName);
+				user.setEmail(email);
+				user.setPassword(password);
 
-				// Execute query in database
-				PreparedStatement pstmt = connection.prepareStatement("insert into users(firstname,email,password) values (?,?,?)");
-				pstmt.setString(1,firstName);
-				pstmt.setString(2,email);
-				pstmt.setString(3,password);
-
-				// Run the query
-				pstmt.executeUpdate();
-
+				UserDao userdao = new UserDao();
+				userdao.UserData(user);
 				// Then go to Login.jsp file
 				RequestDispatcher rd = request.getRequestDispatcher("Login.jsp");
 	  			rd.forward(request, response);
