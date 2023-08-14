@@ -1,26 +1,41 @@
 package com.Bean;
 
 public class UserBean {
+    private int userId;
     private String firstName;
     private String email;
     private String password;
-    public void setFirstName(String firstname){
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
+    public void setFirstName(String firstname) {
         this.firstName = firstname;
     }
-    public String getFirstName(){
+
+    public String getFirstName() {
         return firstName;
     }
-    public void setEmail(String email){
+
+    public void setEmail(String email) {
         this.email = email;
     }
-    public String getEmail(){
+
+    public String getEmail() {
         return email;
     }
-    public void setPassword(String password){
+
+    public void setPassword(String password) {
         this.password = password;
     }
-    public String getPassword(){
+
+    public String getPassword() {
         return password;
     }
-    
+
 }
