@@ -1,7 +1,28 @@
 package com.Controller;
 
-public class ListUserController {
+import java.io.IOException;
+import java.util.ArrayList;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.Bean.UserBean;
+import com.dao.UserDao;
+
+@WebServlet("/ListUserController")
+public class ListUserController extends HttpServlet {
     // jsp send
+    public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+        UserDao d = new UserDao();
+        ArrayList<UserBean> user = d.getAllUsers();
+        request.setAttribute("list",user);
+        RequestDispatcher rd = request.getRequestDispatcher("list.jsp");
+        rd.forward(request, response);
+    }
 
 }
 
