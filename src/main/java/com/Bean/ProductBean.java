@@ -5,7 +5,15 @@ public class ProductBean {
     private String price;
     private String qty;
     private String category;
+    private int pId;
 
+    public void setPId(int pId2){
+        this.pId = pId2;
+    }
+    public int getPId(){
+        return pId;
+    }
+    
     public void setPname(String pname){
         this.pname = pname;
     }
