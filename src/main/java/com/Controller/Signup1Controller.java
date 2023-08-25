@@ -14,8 +14,8 @@ import com.Bean.UserBean;
 import com.dao.UserDao;
 import com.utility.DbConnection;
 
-@javax.servlet.annotation.WebServlet("/SignupController")
-public class SignupController extends HttpServlet{
+@javax.servlet.annotation.WebServlet("/Signup1Controller")
+public class Signup1Controller extends HttpServlet{
 	public void service(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		System.out.println("SignUpController...");
 		String firstName = request.getParameter("firstname");
